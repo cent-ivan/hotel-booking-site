@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leave - Hotel & Resort</title>
+    <title>Hotellina - Hotel & Resort</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" /> 
@@ -13,8 +13,9 @@
     <!-- Flatpickr CSS & JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <!--css nag babug ung style sa home nav boss-->
+    <!--ctailwind-->
     <link rel="stylesheet" href="../../../static/css/style.css"> 
+    <link rel="stylesheet" href="../../../src/main.css"> 
   <style>
     html {
       scroll-behavior: smooth;
@@ -61,12 +62,12 @@
   </script>
 </head>
 
-<body class="text-gray-800 bg-gray-100">
+<body class="text-gray-800 bg-gray-200">
   <div class="container-wrapper">
     <!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 w-full bg-emerald-700 z-50 transition-colors duration-300">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-['Pacifico'] text-white">Leave</a>
+        <a href="#" class="text-2xl font-['Pacifico'] text-white">Hotellina</a>
         <div class="hidden md:flex items-center space-x-8">
           <a href="#home" class="text-white underline hover:text-gray-300 transition-colors">Home</a>
           <a href="{{url_for('public.rooms') }}" class="text-white hover:text-gray-300 transition-colors">Rooms</a>
@@ -108,7 +109,7 @@
     <section id="booking" class="py-15 bg-gray-100">
         <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 -mt-20 relative z-20">
-            <form id="availabilityForm">
+          <form id="availabilityForm" method="get" action="/rooms">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
     <!-- Check In -->
         <div>
@@ -136,7 +137,7 @@
 
         <!-- Submit Button -->
         <div class="flex items-end">
-            <button type="button" id="checkAvailabilityBtn" class="w-full bg-primary text-white py-3 px-4 h-12 rounded hover:bg-emerald-800 transition-colors whitespace-nowrap">
+            <button type="submit" id="checkAvailabilityBtn" class="w-full bg-primary text-white py-3 px-4 h-12 rounded hover:bg-secondary transition-colors whitespace-nowrap">
                 Check Availability
             </button>
         </div>
@@ -147,7 +148,7 @@
     </section>
   
     <!-- Time Picker Modal  Flatpck-->
-    <div id="timePickerModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div id="timePickerModal" class="hidden fixed inset-0 flex items-center justify-center z-50 modal-overlay">
         <div class="bg-white p-6 rounded-lg text-center">
         <h3 class="text-lg font-bold mb-4" id="modalTitle">Select Time</h3>
         <input type="time" id="modalTime" class="w-full border border-gray-300 rounded p-2 mb-4" required />
@@ -155,48 +156,6 @@
             <button id="modalConfirm" class="bg-primary text-white px-4 py-2 rounded hover:bg-emerald-800">Confirm</button>
             <button id="modalCancel" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Cancel</button>
         </div>
-        </div>
-    </div>
-
-    <!-- Modal for Check Availability -->
-    <div id="availabilityModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] p-2">
-        <div class="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg w-full max-w-[95%] sm:max-w-2xl md:max-w-4xl relative overflow-y-auto max-h-[90vh]">
-            <!-- Close Button -->
-            <button id="closeModal" class="absolute top-4 right-4 text-white px-4 py-1 bg-red-500 rounded hover:bg-red-700 hover:text-white transition-colors">
-                Close
-            </button>
-
-            <h2 class="text-xl font-bold mb-6 text-center">2 Rooms Available</h2>
-
-            <div class="space-y-8">
-                <!-- Room 1 -->
-                <div class="flex flex-row items-center justify-between gap-4 flex-wrap">
-                    <img src="../../../static/images/tropical-island.jpg" alt="Deluxe Room" class="w-40 sm:w-52 md:w-64 h-32 sm:h-36 md:h-40 object-cover rounded">
-                    <div class="text-center md:text-left flex-1 min-w-[150px]">
-                        <h3 class="text-lg font-semibold mb-2">Deluxe Room</h3>
-                        <p class="text-gray-600 mb-4">Spacious room with king-size bed, private balcony, and stunning views of the surrounding landscape.</p>
-                    </div>
-                    <button class="border border-green-500 text-green-500 px-4 py-2 sm:px-6 sm:py-2 rounded hover:bg-green-500 hover:text-white transition-colors whitespace-nowrap w-full sm:w-auto">
-                        <a href="../../../blueprints/public/templates/pages/room.html"> <!-- should use form for submitting and selected on the room page-->
-                            Book Now
-                        </a>
-                    </button>
-                </div>
-
-                <!-- Room 2 -->
-                <div class="flex flex-row items-center justify-between gap-4 flex-wrap">
-                    <img src="../../../static/images/tropical-island.jpg" alt="Executive Suite" class="w-40 sm:w-52 md:w-64 h-32 sm:h-36 md:h-40 object-cover rounded">
-                    <div class="text-center md:text-left flex-1 min-w-[150px]">
-                        <h3 class="text-lg font-semibold mb-2">Executive Suite</h3>
-                        <p class="text-gray-600 mb-4">Luxurious suite featuring a separate living area, premium amenities, and personalized service.</p>
-                    </div>
-                    <button class="border border-green-500 text-green-500 px-4 py-2 sm:px-6 sm:py-2 rounded hover:bg-green-500 hover:text-white transition-colors whitespace-nowrap w-full sm:w-auto">
-                        <a href="../../../blueprints/public/templates/pages/room.html"> <!-- should use form for submitting and selected on the room page-->
-                            Book Now
-                        </a>
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -347,7 +306,7 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Guests Say</h2>
         <hr class="border-t-4 border-emerald-600 my-4 w-32 mx-auto" />
         <p class="text-gray-600 max-w-2xl mx-auto">
-            Discover why guests choose Leave-hotel & Resort for their luxury getaway
+            Discover why guests choose Hotellina-hotel & Resort for their luxury getaway
             experience.
         </p>
         </div>
@@ -436,7 +395,7 @@
 
 
         <!-- Contact & Location Section -->
-        <section id="contact" class="py-16 bg-white">
+        <section id="contact" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Find Us</h2>
@@ -488,7 +447,7 @@
       <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-                <h3 class="text-xl font-['Pacifico'] mb-4">Leave</h3>
+                <h3 class="text-xl font-['Pacifico'] mb-4">Hotellina</h3>
                 <p class="text-gray-400 mb-4">
                     Experience luxury and comfort in our exclusive resort, where every detail is designed for your perfect getaway.
                 </p>
@@ -540,7 +499,7 @@
                 </div>
         </div>
         <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-center">
-          <p class="text-gray-400 mb-4 md:mb-0 text-center">© 2025 Leave. All rights reserved.</p>
+          <p class="text-gray-400 mb-4 md:mb-0 text-center">© 2025 Hotellina. All rights reserved.</p>
         </div>
       </div>
     </footer>

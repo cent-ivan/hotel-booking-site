@@ -65,49 +65,22 @@ window.addEventListener('scroll', function () {
   });
 
   // Confirm time selection
-  document.getElementById("modalConfirm").addEventListener("click", () => {
-  const time = document.getElementById("modalTime").value;
-  if (!time) {
-      alert("Please select a time.");
-      return;
-  }
-  document.getElementById("activeField").value = `${selectedDate} ${time}`;
-  document.getElementById("timePickerModal").classList.add("hidden");
-  });
+// Confirm time selection
+document.getElementById("modalConfirm").addEventListener("click", () => {
+    const time = document.getElementById("modalTime").value;
+    if (!time) {
+        alert("Please select a time.");
+        return;
+    }
+    document.getElementById(activeField).value = `${selectedDate} ${time}`;
+    document.getElementById("timePickerModal").classList.add("hidden");
+});
 
   // Cancel time selection
   document.getElementById("modalCancel").addEventListener("click", () => {
   document.getElementById("timePickerModal").classList.add("hidden");
   });
 
-  // Show modal for check availability
-  document.getElementById("checkAvailabilityBtn").addEventListener("click", function () {
-      document.getElementById("availabilityModal").classList.remove("hidden");
-  });
-
-  // Close modal
-  document.getElementById("closeModal").addEventListener("click", function () {
-      document.getElementById("availabilityModal").classList.add("hidden");
-  });
-
-  // opwn modal prevent background scroll
-  document.getElementById("checkAvailabilityBtn").addEventListener("click", function () {
-      document.getElementById("availabilityModal").classList.remove("hidden");
-      document.body.classList.add("overflow-hidden"); 
-  });
-
-  // Close modal and allow scroll
-  document.getElementById("closeModal").addEventListener("click", function () {
-      document.getElementById("availabilityModal").classList.add("hidden");
-      document.body.classList.remove("overflow-hidden"); 
-  });
-
-  document.getElementById("availabilityModal").addEventListener("click", function (e) {
-  if (e.target === this) { 
-      this.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-  }
-  });
 
 
 
