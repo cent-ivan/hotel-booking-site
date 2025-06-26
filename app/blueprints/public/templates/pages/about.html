@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rooms - Hotel & Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../../static/css/style.css">
+        <!-- RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body class="text-gray-800 bg-gray-200">
+    <div class="container-wrapper">
+
+<!-- Navbar -->
+        <nav id="navbar" class="fixed top-0 left-0 w-full bg-emerald-700 z-50 transition-colors duration-300">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-['Pacifico'] text-white">Hotellina</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{{url_for('public.index') }}" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                    <a href="{{url_for('public.rooms') }}" class="text-white hover:text-gray-300 transition-colors">Rooms</a>
+                    <a href="#about" class="text-white underline hover:text-gray-300 transition-colors" class="text-white hover:text-gray-300 transition-colors">About</a>
+                    <a href="{{url_for('public.contact') }}" class="text-white hover:text-gray-300 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+<!--Main Content-->
+        <div class="container mx-auto px-4 py-32"></div>
+
+<!-- Footer -->
+    <footer class="bg-emerald-900 text-white py-10 min-h-[200px]">
+        <div class="container mx-auto px-4">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              <div>
+                  <h3 class="text-xl font-['Pacifico'] mb-4">Hotellina</h3>
+                  <p class="text-gray-400 mb-4">
+                      Experience luxury and comfort in our exclusive resort, where every detail is designed for your perfect getaway.
+                  </p>
+                  <div class="flex space-x-4">
+                      <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                      <i class="ri-facebook-fill"></i>
+                      </a>
+                      <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                      <i class="ri-instagram-line"></i>
+                      </a>
+                      <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                      <i class="ri-twitter-x-line"></i>
+                      </a>
+                      <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                      <i class="ri-pinterest-line"></i>
+                      </a>
+                  </div>
+                  </div>
+          
+                  <div>
+                  <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                  <ul class="space-y-2">
+                      <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                      <li><a href="#rooms" class="text-gray-400 hover:text-white transition-colors">Rooms</a></li>
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                      <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">My Bookings</a></li>
+                      <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Reviews</a></li>
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                  </ul>
+                  </div>
+          
+                  <div>
+                  <h4 class="text-lg font-semibold mb-4">Policies</h4>
+                  <ul class="space-y-2">
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a></li>
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
+                      <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                  </ul>
+                  </div>
+          
+                  <div>
+                  <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                  <p class="text-gray-400 mb-4">Subscribe to receive special offers and updates.</p>
+                  <form class="flex">
+                      <input type="email" placeholder="Your email address" class="flex-1 bg-gray-800 border-none rounded-l text-white p-1 focus:outline-none focus:ring-1 focus:ring-primary" />
+                      <button type="submit" class="bg-primary px-1 rounded-r hover:bg-emerald-800 transition-colors whitespace-nowrap">Subscribe</button>
+                  </form>
+                  </div>
+          </div>
+          <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-center">
+            <p class="text-gray-400 mb-4 md:mb-0 text-center">© 2025 Hotellina. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+</body>
+</html>

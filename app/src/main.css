@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+/* Custom Colors */
+.bg-primary {
+    background-color: #166534 !important;
+}
+/* 40% opacity */
+.bg-opacity-40 {
+    background-color: rgba(22, 101, 52, 0.4) !important; 
+}
+
+.bg-secondary {
+    background-color: #34d399 !important;
+}
+.text-primary {
+    color: #166534 !important;
+}
+
+.text-secondary {
+    color: #34d399 !important;
+}
+
+.hover\:bg-primary:hover {
+    background-color: #166534 !important;
+}
+
+.hover\:bg-secondary:hover {
+    background-color: #34d399 !important;
+}
+
+.rounded-button {
+    border-radius: 8px !important;
+}
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
