@@ -13,12 +13,12 @@ services:
       - .:/flask-app
     restart: unless-stopped
 
-  frontend:
-    build:
-      context: .
-      dockerfile: tailwind.Dockerfile
-    command: npm run build
-    volumes:
-      - .:/flask-app
-    tty: true
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: tailwind.Dockerfile
+  #   command: npm run build
+  #   volumes:
+  #     - .:/flask-app
+  #   tty: true
 

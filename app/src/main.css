@@ -1,5 +1,12 @@
 @import "tailwindcss";
+ html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
 
+        body {
+            font-family: sans-serif;
+        }
 /* Custom Colors */
 .bg-primary {
     background-color: #166534 !important;

@@ -1,76 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base.html'%}
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hotellina - Hotel & Resort</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" /> 
-    <!-- RemixIcon -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- Flatpickr CSS & JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <!--ctailwind-->
-    <link rel="stylesheet" href="../../../static/css/style.css"> 
-    <link rel="stylesheet" href="../../../src/main.css"> 
-  <style>
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
+{%block title%}Hotellina - Hotel & Resort {%endblock%}
 
-    body {
-      font-family: sans-serif;
-    }
-
-    .home-hero-background {
-      background-image: url('../../../static/images/tropical-island.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      width: 100%;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(21, 192, 49, 0.034);
-      z-index: 1;
-    }
-
-  </style>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#166534",
-            secondary: "#34d399",
-          },
-          borderRadius: {
-            button: "8px",
-          },
-        },
-      },
-    };
-  </script>
-</head>
-
-<body class="text-gray-800 bg-gray-200">
-  <div class="container-wrapper">
-    <!-- Navbar -->
+{%block content%}
+<!-- Navbar -->
     <nav id="navbar" class="fixed top-0 left-0 w-full bg-emerald-700 z-50 transition-colors duration-300">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="#" class="text-2xl font-['Pacifico'] text-white">Hotellina</a>
         <div class="hidden md:flex items-center space-x-8">
           <a href="#home" class="text-white underline hover:text-gray-300 transition-colors">Home</a>
-          <a href="{{url_for('public.rooms') }}" class="text-white hover:text-gray-300 transition-colors">Rooms</a>
+          <a href="{{url_for('rooms.index') }}" class="text-white hover:text-gray-300 transition-colors">Reservation</a>
           <a href="{{url_for('public.about') }}" class="text-white hover:text-gray-300 transition-colors">About</a>
           <a href="{{url_for('public.contact') }}" class="text-white hover:text-gray-300 transition-colors">Contact</a>
 
@@ -101,54 +40,49 @@
         <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
           Experience unparalleled luxury and comfort in our exclusive resort. Nestled in a pristine location, we offer the perfect getaway for relaxation and rejuvenation.
         </p>
-        <a href="#booking" class="bg-secondary hover:bg-primary text-white px-8 py-3 rounded text-lg font-medium transition-colors whitespace-nowrap">Book With Us Now</a>
+        <a href="{{url_for('rooms.index')}}" class="bg-secondary hover:bg-primary text-white px-8 py-3 rounded text-lg font-medium transition-colors whitespace-nowrap">Book With Us Now</a>
       </div>
     </section>
 
     <!-- Booking Section -->
-    <section id="booking" class="py-15 bg-gray-100">
+    <!-- <section id="booking" class="py-15 bg-[gray-100]">
         <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-6 -mt-20 relative z-20">
-          <form id="availabilityForm" method="get" action="/rooms">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-    <!-- Check In -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Check In (Date & Time)</label>
-            <input type="text" id="checkinInput" class="w-full border border-gray-300 rounded p-2 h-12 cursor-pointer" placeholder="Select Check In" readonly required />
-        </div>
-    <!-- Check Out -->
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Check Out (Date & Time)</label>
-            <input type="text" id="checkoutInput" class="w-full border border-gray-300 rounded p-2 h-12 cursor-pointer" placeholder="Select Check Out" readonly required />
-        </div>
-    <!-- Guests -->
-        <div class="flex flex-col justify-end">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Guests</label>
-            <select id="guests" class="w-full border border-gray-300 rounded p-2 h-12 focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-white" required>
-            <option value="">Select Guests</option>
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4">4 Guests</option>
-            <option value="5">5 Guests</option>
-            <option value="6">6 Guests</option>
-            </select>
-        </div>
+        <div class="max-w-2xl  mx-auto bg-[url('../../../../static/images/availability-bg.png')] bg-no-repeat bg-right-top shadow-lg rounded-lg p-6 -mt-18 relative z-20">
+          <form id="availabilityForm" method="" action="{{url_for('rooms.index')}}">
+            <div class="grid grid-cols-3 grid-rows-2 md:grid-cols-4 md:grid-rows-1 gap-2 md:gap-4">
+            
+                <div class="">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Check-In Date</label>
+                    <input type="text" name="checkin" id="checkinInput" class="w-full border border-gray-300 rounded p-2 h-10 cursor-pointer bg-white" placeholder="Select Check In" readonly required />
+                </div>
+           
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Check-Out Date</label>
+                    <input type="text" name="checkout" id="checkoutInput" class="w-full border border-gray-300 rounded p-2 h-10 cursor-pointer bg-white" placeholder="Select Check Out" readonly required />
+                </div>
+           
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Check-Out Date</label>
+                    <input type="text" name="promocode"class="w-full border text-sm md:text-md border-gray-300 rounded p-2 h-8 md:h-10 cursor-pointer bg-white" placeholder="Enter promo code" equired />
+                </div>
 
-        <!-- Submit Button -->
-        <div class="flex items-end">
-            <button type="submit" id="checkAvailabilityBtn" class="w-full bg-primary text-white py-3 px-4 h-12 rounded hover:bg-secondary transition-colors whitespace-nowrap">
-                Check Availability
-            </button>
-        </div>
+            
+                <div class="flex justify-center items-start md:items-end col-span-3 md:col-span-1">
+                
+                    <button type="submit" id="checkAvailabilityBtn" class=" w-full md:w-full text-sm md:text-md bg-primary text-white py-2 px-2 h-8 md:h-10 rounded hover:bg-secondary transition-colors whitespace-nowrap">
+                      Check Availability
+                    </button>
+                  
+                    
+                </div>
             </div>
-            </form>
+          </form>
         </div>
         </div>
-    </section>
+    </section> -->
   
     <!-- Time Picker Modal  Flatpck-->
-    <div id="timePickerModal" class="hidden fixed inset-0 flex items-center justify-center z-50 modal-overlay">
+    <!-- <div id="timePickerModal" class="hidden fixed inset-0 flex items-center justify-center z-50 modal-overlay">
         <div class="bg-white p-6 rounded-lg text-center">
         <h3 class="text-lg font-bold mb-4" id="modalTitle">Select Time</h3>
         <input type="time" id="modalTime" class="w-full border border-gray-300 rounded p-2 mb-4" required />
@@ -157,9 +91,8 @@
             <button id="modalCancel" class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">Cancel</button>
         </div>
         </div>
-    </div>
-
-    <!-- rooms, about, reviews, contact, and footer sections -->
+    </div> -->
+ <!-- rooms, about, reviews, contact, and footer sections -->
       <!-- Rooms summary -->
       <section id="rooms" class="py-16 bg-gray-100">
         <div class="container mx-auto px-4">
@@ -188,8 +121,8 @@
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Free WiFi</span>
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">42m²</span>
                 </div>
-                <a href="../../../blueprints/public/templates/pages/room.html" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    More Details
+                <a href="{{url_for('rooms.index', type='Deluxe') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
+                    View Rooms
                 </a>
                 
               </div>
@@ -211,8 +144,8 @@
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded" >Mini Bar</span>
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">68m²</span>
                 </div>
-                <a href="../../../blueprints/public/templates/pages/room.html" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    More Details
+                <a href="{{url_for('rooms.index') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
+                    View Rooms
                 </a>
                 
               </div>
@@ -234,8 +167,8 @@
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Private Butler</span>
                   <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">120m²</span>
                 </div>
-                <a href="../../../blueprints/public/templates/pages/room.html" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    More Details
+                <a href="{{url_for('rooms.index') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
+                    View Rooms
                 </a>
                 
               </div>
@@ -300,7 +233,7 @@
       
 
     <!-- Guest Reviews Section -->
-    <section class="py-16 bg-gray-100">
+    <!-- <section class="py-16 bg-gray-100">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Guests Say</h2>
@@ -391,7 +324,7 @@
         </div>
         </div>
     </div>
-    </section>
+    </section> -->
 
 
         <!-- Contact & Location Section -->
@@ -441,70 +374,4 @@
             </div>
             </div>
         </section>
-
-    <!-- Footer -->
-    <footer class="bg-emerald-900 text-white py-10 min-h-[200px]">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div>
-                <h3 class="text-xl font-['Pacifico'] mb-4">Hotellina</h3>
-                <p class="text-gray-400 mb-4">
-                    Experience luxury and comfort in our exclusive resort, where every detail is designed for your perfect getaway.
-                </p>
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
-                    <i class="ri-facebook-fill"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
-                    <i class="ri-instagram-line"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
-                    <i class="ri-twitter-x-line"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
-                    <i class="ri-pinterest-line"></i>
-                    </a>
-                </div>
-                </div>
-        
-                <div>
-                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul class="space-y-2">
-                    <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                    <li><a href="#rooms" class="text-gray-400 hover:text-white transition-colors">Rooms</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
-                    <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">My Bookings</a></li>
-                    <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Reviews</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                </ul>
-                </div>
-        
-                <div>
-                <h4 class="text-lg font-semibold mb-4">Policies</h4>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
-                </ul>
-                </div>
-        
-                <div>
-                <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
-                <p class="text-gray-400 mb-4">Subscribe to receive special offers and updates.</p>
-                <form class="flex">
-                    <input type="email" placeholder="Your email address" class="flex-1 bg-gray-800 border-none rounded-l text-white p-1 focus:outline-none focus:ring-1 focus:ring-primary" />
-                    <button type="submit" class="bg-primary px-1 rounded-r hover:bg-emerald-800 transition-colors whitespace-nowrap">Subscribe</button>
-                </form>
-                </div>
-        </div>
-        <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-center">
-          <p class="text-gray-400 mb-4 md:mb-0 text-center">© 2025 Hotellina. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script src="../../../static/scripts/home.js"></script>
-</body>
-</html>
+{%endblock%}

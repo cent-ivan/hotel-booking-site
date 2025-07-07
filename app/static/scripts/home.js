@@ -31,55 +31,74 @@ window.addEventListener('scroll', function () {
   });
   }
 
-
   // Booking Form Submission with URL Parameters
-  let activeField = null;
-  let selectedDate = "";
+  // let activeField = null;
+  let checkInInput;
+  let checkOutInput;
 
   // Setup Flatpickr for Check In
   flatpickr("#checkinInput", {
-  dateFormat: "Y-m-d",
+  dateFormat: "m-d-Y",
   onChange: function (selectedDates, dateStr) {
       if (dateStr) {
-      selectedDate = dateStr;
-      activeField = "checkinInput";
-      document.getElementById("modalTime").value = "";
-      document.getElementById("timePickerModal").classList.remove("hidden");
-      document.getElementById("modalTitle").textContent = `Select Time for ${dateStr}`;
+      checkInDate = dateStr;
       }
+      
   }
   });
 
   // Setup Flatpickr for Check Out
   flatpickr("#checkoutInput", {
-  dateFormat: "Y-m-d",
+  dateFormat: "m-d-Y",
   onChange: function (selectedDates, dateStr) {
       if (dateStr) {
-      selectedDate = dateStr;
-      activeField = "checkoutInput";
-      document.getElementById("modalTime").value = "";
-      document.getElementById("timePickerModal").classList.remove("hidden");
-      document.getElementById("modalTitle").textContent = `Select Time for ${dateStr}`;
+      checkOutDate = dateStr;
+      // activeField = "checkoutInput";
+      // document.getElementById("modalTime").value = "";
+      // document.getElementById("timePickerModal").classList.remove("hidden");
+      // document.getElementById("modalTitle").textContent = `Select Time for ${dateStr}`;
       }
   }
   });
+  let selectedRooms = []  
+
+  const totalNight =  document.getElementById('room-total')
+  totalNight.textContent = 0
+  let room1 = 0
+  let room2 = 0
+  let room3 = 0
+
+ const roomDropDown = document.getElementById('select-room-dropdown') 
+ roomDropDown.addEventListener('change', function() {
+  room1 = this.value
+  count = parseInt(room1) + parseInt(room2);
+  totalNight.textContent = count
+ })
+
+ const roomDropDown2= document.getElementById('select-room-dropdown2') 
+ roomDropDown2.addEventListener('change', function() {
+  room2 = this.value
+  count = parseInt(room1) + parseInt(room2);
+  totalNight.textContent = count
+ })
+
 
   // Confirm time selection
 // Confirm time selection
-document.getElementById("modalConfirm").addEventListener("click", () => {
-    const time = document.getElementById("modalTime").value;
-    if (!time) {
-        alert("Please select a time.");
-        return;
-    }
-    document.getElementById(activeField).value = `${selectedDate} ${time}`;
-    document.getElementById("timePickerModal").classList.add("hidden");
-});
+// document.getElementById("modalConfirm").addEventListener("click", () => {
+//     const time = document.getElementById("modalTime").value;
+//     if (!time) {
+//         alert("Please select a time.");
+//         return;
+//     }
+//     document.getElementById(activeField).value = `${selectedDate} ${time}`;
+//     document.getElementById("timePickerModal").classList.add("hidden");
+// });
 
-  // Cancel time selection
-  document.getElementById("modalCancel").addEventListener("click", () => {
-  document.getElementById("timePickerModal").classList.add("hidden");
-  });
+//   // Cancel time selection
+//   document.getElementById("modalCancel").addEventListener("click", () => {
+//   document.getElementById("timePickerModal").classList.add("hidden");
+//   });
 
 
 
