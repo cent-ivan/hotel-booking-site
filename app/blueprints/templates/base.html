@@ -134,13 +134,14 @@
   <script src="../../../static/scripts/home.js"></script>
   <script>
         document.addEventListener('DOMContentLoaded', () => {
-  
+            
+
             const checkInInput = document.getElementById('checkinInput')
             const checkOutInput = document.getElementById('checkoutInput')
             //checkInInput.value = today() 
             //checkOutInput.value = nextDate()
 
-            
+            countNights(checkInInput.value, checkOutInput.value)
 
             // Book Now button behavior
             bookNowButtons.forEach(button => {
