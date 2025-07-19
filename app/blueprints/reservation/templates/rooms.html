@@ -39,11 +39,10 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Promo Code</label>
                             <input type="text" name="promocode" value="{{promocode}}" class="w-full border text-sm md:text-md border-gray-300 rounded p-2 h-8 md:h-10 cursor-pointer bg-white" placeholder="Enter promo code" equired />
                         </div>
-                
 
                     <!-- Submit Button -->
                         <div class="flex justify-center items-start md:items-end col-span-3 md:col-span-1">
-                            <button type="submit" id="checkAvailabilityBtn" class=" w-full md:w-[70%] text-sm md:text-md bg-primary text-white py-2 px-2 h-8 md:h-10 rounded hover:bg-secondary transition-colors whitespace-nowrap">
+                            <button type="submit" id="checkAvailabilityBtn" class=" w-full md:w-[70%] text-xs md:text-md bg-primary  hover:bg-secondary text-white py-2 px-2 h-8 md:h-10 rounded hover:bg-secondary transition-colors whitespace-nowrap">
                                 Check Availability
                             </button>
                         </div>
@@ -64,41 +63,51 @@
                     <div class="hidden lg:block fixed h-screen w-70 top-44 right-48 p-3 rounded-lg shadow-md bg-white z-10">
                         <div class="flex flex-col">
                             <span class="border-b-2 border-dashed border-gray-300"></span>
-                            <h1 class="text-md lg:text-lg font-bold mb-1 lg:mb-2">Boooking Summary</h1>
+                            <h1 class="text-md lg:text-lg font-bold mb-1">Boooking Summary</h1>
                             <!-- Date Summary -->
-                            <div class="flex items center justify-between mb-1">
-                                <div class="flex flex-col">
-                                    <span id="checkin-date" class="text-md font-bold">{{checkin}}</span>
-                                    <span class="text-xs text-gray-400">From 2:00 PM</span>
-                                </div>
-                                <span class="text-lg font-bold text-gray-400">→</span>
-                                <div class="flex flex-col">
-                                    <span class="text-md font-bold">{{ checkout }}</span>
-                                    <span class="text-xs text-gray-400">To 12:00 PM</span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col justify-between mb-1">
-                                <!-- Date Summary -->
-                                <div class="flex items-center">
-                                    <span id="night-total" class="text-sm font-bold text-blue-600">0</span>
-                                    <span class="text-sm text-blue-600 ml-1">night/s</span>
-                                </div>
-                                <div class="w-full h-15 bg-gray-600/30 rounded-md mb-2">
-                                    <div id="display-rooms" class="flex flex-col p-1">
-                                      
+                            <form action="{{url_for('rooms.checkout')}}" method="get">
+                                <div class="flex  justify-evenly mb-1">
+                                    <div class="flex flex-col">
+                                        <input type="text" readonly value="{{ checkin | format_date }}"  id="checkout-date" class="w-30 text-md font-bold outline-0">
+                                        <input type="hidden" value="{{checkin}}" name="checkin">  <!-- Real Value -->
+                                        <span class="text-xs text-gray-400">To 12:00 PM</span>
                                     </div>
+                                    <span class="text-lg font-bold text-gray-400">→</span>
+                                    <div class="flex flex-col  ml-5">
+                                        <input type="text" readonly value="{{ checkout | format_date }}"id="checkout-date" class="w-30 text-md font-bold outline-0">
+                                        <input type="hidden" value="{{checkout}}" name="checkout">  <!-- Real Value -->
+                                        <span class="text-xs text-gray-400">To 12:00 PM</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col justify-between mb-1">
+                                    <!-- Date Summary -->
+                                    <div class="flex items-center mb-1 ">
+                                        <input type="text" readonly value="0" id="night-total" class="w-3 text-sm font-bold text-blue-600 outline-0 ">
+                                        <span class="text-sm text-blue-600 ml-1">night/s</span>
+                                    </div>
+                                    <div class="w-full h-20 bg-gray-600/30 rounded-md mb-2">
+                                        <div id="display-rooms" class="flex flex-col py-1 px-4">
+                                            {%for room in selected%}
+                                                <div class="flex items-center gap-5">
+                                                    <span class="text-sm">{{room}}</span>
+                                                    <a href="{{url_for('rooms.delete_room',uuid=guest_uuid, room=room)}}">
+                                                        <button type="button" title="Remove" class="text-md cursor-pointer">✖</button>
+                                                    </a>
+                                                    
+                                                </div>
+                                            {%endfor%}
+                                        </div>
+                                        
+                                    </div>
+                                    <span class="border-b-2 border-dashed border-gray-300 mb-1"></span>
                                     
                                 </div>
-                                <span class="border-b-2 border-dashed border-gray-300 mb-1"></span>
-                                <div class="flex">
-                                    <span class="text-md lg:text-lg font-bold mr-2">Total:</span>
-                                    <span class="text-md lg:text-lg font-bold mr-2">Php </span>
-                                    <span id="total-price" class="text-md lg:text-lg font-bold text-primary">0.00</span>
-                                </div>
-                            </div>
-                            <button type="submit" id="checkAvailabilityBtn" disabled class=" w-full text-md bg-gray-500 text-white py-1 px-2 :h-8 rounded  transition-colors whitespace-nowrap">
-                                Book Now
-                            </button>
+                                <input type="text" readonly value="{{guest_uuid}}" name="uid" id="uuid" class="hidden w-30 text-md font-bold outline-0">
+                                <button type="submit" id="bookButton" class=" w-full text-md bg-primary text-white py-1 px-2 h-8 rounded  hover:bg-secondary transition-colors whitespace-nowrap">
+                                    Book Now
+                                </button>
+                            </form>
+                            
                         </div> 
                     </div>
                     <!-- Mobile Version -->
@@ -106,57 +115,60 @@
                         <div class="flex flex-col">
                             <span class="border-b-2 border-dashed border-gray-300 mb-1"></span>
                             <h1 class="text-md lg:text-lg font-bold mb-1 lg:mb-2">Boooking Summary</h1>
-                            <div class="flex justify-between mb-1">
-                                <!-- Date Summary -->
-                                <div class="flex items-center">
-                                    <span id="night-total-mobile" class="text-sm font-bold text-blue-600">0</span>
-                                    <span class="text-sm text-blue-600 ml-1">night/s</span>
-                                    <span class="mx-2">|</span>
-                                    <span id="room-total" class="text-sm font-bold text-blue-600">0</span>
-                                    <span class="text-sm text-blue-600 ml-1">rooms</span>
+                            <form action="{{url_for('rooms.checkout')}}" method="">
+                                <input type="text" readonly name="uid" value="{{guest_uuid}}" id="uuid" class="hidden w-25 text-md font-bold outline-0">
+                                <div class="flex justify-between mb-1">
+                                    <!-- Date Summary -->
+                                    <div class="flex items-center">
+                                        <span id="night-total-mobile" class="text-sm font-bold text-blue-600">0</span>
+                                        <span class="text-sm text-blue-600 ml-1">night/s</span>
+                                        <span class="mx-2">|</span>
+                                        <span id="room-total" class="text-sm font-bold text-blue-600">{{rooms_selected | length}}</span>
+                                        <span class="text-sm text-blue-600 ml-1">rooms</span>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <span class="text-md lg:text-lg font-bold mr-2">Total:</span>
-                                    <span class="text-md lg:text-lg font-bold mr-2">Php </span>
-                                    <span id="total-price-mobile" class="text-md lg:text-lg font-bold text-primary">0.00</span>
-                                </div>
-                            </div>
-                            <button type="submit" id="checkAvailabilityBtn" disabled class="w-full text-sm md:text-md bg-primary text-white py-1 px-2 h-6 md:h-10 rounded hover:bg-secondary transition-colors whitespace-nowrap">
-                                Book Now
-                            </button>
+                                <button type="submit" id="checkAvailabilityBtn" class="w-full text-sm md:text-md bg-primary text-white py-1 px-2 h-6 md:h-10 rounded hover:bg-secondary transition-colors whitespace-nowrap">
+                                    Book Now
+                                </button>
+                            </form>    
                         </div> 
                     </div>
 
                     {%for room_type in room_types %}
+                        {%if room_type['count'] > 0%}
                         <div class="lg:w-full bg-white rounded-lg shadow-md overflow-hidden mb-8 flex flex-col lg:flex-row">
                             <img src="../../../../static/images/nmcr_downloaded_image.png" alt="Deluxe Room"
                                 class="w-full lg:w-1/2 h-64 lg:h-auto object-cover">
                             <div class="p-6 flex flex-col justify-center">
                                 <div id="sample" class="flex justify-center items-start flex-col mb-2">
-                                
-                                    <h2 id="room-name" class="text-2xl font-bold">{{room_type["name"]}}</h2>
+                                    <div class="w-full mb-2 flex items-center">
+                                        <h2 class="font-bold mr-2 text-red-500 smooth-blink">{{room_type['count']}}</h2>
+                                        <span class="font-semibold">room/s left</span>
+                                    </div>
+                                    <h2 id="room-name" class="text-2xl font-bold">{{room_type['room'].name}}</h2>
                                     <div class="flex flex-wrap">
                                         <div class="flex justify-start items-start gap-1 w-25  text-primary text-center text-xs py-1 mb-1 rounded">
                                             <img src="../../../../static/images/bed.png" alt="" class="h-4">
-                                            <span class="">{{room_type["bedtype"]}}</span>
+                                            <span class="">{{room_type['room'].bedtype}}</span>
                                         </div>
-                                        <div class="flex justify-start items-start gap-1 w-20  text-primary text-center text-xs px-1 py-1 mb-1 rounded">
+                                        <div class="flex justify-start items-start gap-1 w-22 text-primary text-center text-xs px-1 py-1 mb-1 mr-1 rounded">
                                             <img src="../../../../static/images/area.png" alt="" class="h-4">
-                                            <span class="">{{room_type['size']}} m²</span>
+                                            <span class="">{{room_type['room'].size}} m²</span>
                                         </div>
                                         <div class="flex justify-start items-start gap-1 w-25  text-primary text-center text-xs px-1 py-1 mb-1 rounded">
                                             <img src="../../../../static/images/group.png" alt="" class="h-4">
-                                            <span class="">{{room_type["capacity"]}} Persons</span>
+                                            <span class="">{{room_type['room'].capacity}} </span>
+                                            <span>{{room_type['room'].capacitytype}}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-600 mb-4">{{room_type['description']}}</p>
+                                <p class="text-sm text-gray-600 mb-4">{{room_type['room'].description}}</p>
 
-                                <p class="text-xs text-gray-600 mb-2 mt-1"><span class="font-bold">Note: </span>{{room_type["note"]}}</p>
+                                <p class="text-xs text-gray-600 mb-2 mt-1"><span class="font-bold">Note: </span>{{room_type['room'].note}}</p>
                                 
                                 <h3 class="text-md font-bold">Amenities</h3>
                                 <div class="flex flex-wrap gap-2 mb-4">
-                                    {%for amenity in room_type["amenities"]%} 
+                                    {%for amenity in room_type['room'].amenities%} 
                                         <span class="bg-emerald-100 text-primary text-xs px-2 py-1 rounded">{{amenity}}</span>
                                     {%endfor%}
                                 </div>
@@ -165,26 +177,23 @@
                                 <div class="flex justify-center items-start flex-col mt-1">
                                     <div class="flex">
                                         <span class="text-primary font-bold block mr-2">Php</span>
-                                        <span id="room-price" class="text-primary font-bold block">{{room_type['price']}} </span>
+                                        <span id="room-price" class="text-primary font-bold block">{{room_type['room'].price}} </span>
                                         <span class="text-primary font-bold block ml-2">per night</span>
                                     </div>
                                     <span class="text-gray-500 text-xs font-semibold text-justify mb-2 block"> Price includes all taxes and fees </span>
                                 </div>
                                 
                                 <div class="mt-2">
-                                    <label for="select-room-dropdown" class="block text-xs font-medium text-gray-700 mb-1">Room</label>
-                                    <select id="select-room-dropdown"
-                                        class="w-full border border-gray-300 rounded p-2 text-xs">
-                                        {% set number = room_type['capacity'] | int %}
-                                        {%for num in range(number + 1)%}
-                                            <option
-                                                value='{{num}}'>
-                                                {{num}} room</option>
-                                        {%endfor%}
-                                    </select>
+                                    <a href="{{url_for('rooms.add_room', uuid=guest_uuid, room=room_type['room'].name)}}">
+                                        <button id="checkAvailabilityBtn" id="select-room-btn" class="w-full text-sm md:text-md bg-primary text-white py-1 px-2 h-6 md:h-8 rounded hover:bg-secondary transition-colors whitespace-nowrap">
+                                            Select Room
+                                        </button>
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
+                        {%endif%}
                     {%endfor%}
                     
                 </div>

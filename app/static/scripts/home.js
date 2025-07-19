@@ -36,23 +36,24 @@ window.addEventListener('scroll', function () {
     const total = document.getElementById('night-total')
     const totalMobile = document.getElementById('night-total-mobile')
 
-    checkinSplit = checkin.split('-')
-    checkoutSplit = checkout.split('-')
-    const totalNights = parseInt(checkoutSplit[1]) - parseInt(checkinSplit[1]) 
-    total.textContent = totalNights
+
+    const checkinDate = new Date(checkin)
+    const checkoutDate = new Date(checkout)
+    const totalNights = (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24);
+    total.value = totalNights 
     totalMobile.textContent = totalNights
   }
 
 
   // Booking Form Submission with URL Parameters
   // let activeField = null;
-  let checkInInput;
-  let checkOutInput;
+  const checkInInput = document.getElementById('checkinInput')
+  const checkOutInput = document.getElementById('checkoutInput')
   let minCheckoutDate = document.getElementById('checkin-date');
 
   // Setup Flatpickr for Check In
   flatpickr("#checkinInput", {
-  dateFormat: "m-d-Y",
+  dateFormat: "Y-m-d",
   onChange: function (selectedDates, dateStr) {
       if (dateStr) {
       checkInDate.value = dateStr;
@@ -63,8 +64,8 @@ window.addEventListener('scroll', function () {
 
   // Setup Flatpickr for Check Out
   flatpickr("#checkoutInput", {
-  dateFormat: "m-d-Y",
-  minDate:`${minCheckoutDate.innerText}`,
+  dateFormat: "Y-m-d",
+  minDate:`${checkInInput.value}`,
   onChange: function (selectedDates, dateStr) {
       if (dateStr) {
       checkOutInput.value = dateStr;
@@ -80,59 +81,80 @@ window.addEventListener('scroll', function () {
   //get the price elemetn
   const priceElem = document.getElementById('total-price')
   const priceElemMobile = document.getElementById('total-price-mobile')
-  let totalPrice = 0
-  const computeRoomPrice = (basePrice, qty) => {
-    const total = basePrice * qty
-    totalPrice += total
-  }
+  //CASE: resets the price if new
+
   
   //Room Tracking Code
   const displayRooms = document.getElementById('display-rooms')
-  let room = {}
+
+
+
+
+
+
+
+
+
 
   //Add event listeners to all dropdowns
-  const roomDropDowns = document.querySelectorAll('#select-room-dropdown')
-  const roomTypeNames = document.querySelectorAll('#room-name') //get all of the room name
-  const roomPrices = document.querySelectorAll('#room-price')
+  // const roomDropDowns = document.querySelectorAll('#select-room-dropdown')
+  // const roomTypeNames = document.querySelectorAll('#room-name') //get all of the room name
+  // const roomPrices = document.querySelectorAll('#room-price')
   
-  let count = 0 //for accessing the room type nodelist. SEE: roomTypeIds 
-  roomDropDowns.forEach(dropdown => {
-      const roomName =  roomTypeNames[count].outerText //retrieve the text value from the nodelist
-      const roomPrice = roomPrices[count].outerText
+  // let count = 0 //for accessing the room type nodelist. SEE: roomTypeIds 
+  // roomDropDowns.forEach(dropdown => {
+  //     const roomName =  roomTypeNames[count].outerText //retrieve the text value from the nodelist
+  //     const roomPrice = roomPrices[count].outerText
       
-      dropdown.addEventListener('change', function() {     
-          room[roomName] = {num: this.value, price:roomPrice} //Data selected by the customer. Actual data structure     
+  //     dropdown.addEventListener('change', function() {     
+  //         rooms[roomName] = {num: this.value, price:roomPrice} //Data selected by the customer. Actual data structure     
+            
 
+  //           //CASE: Deleted the old content
+  //           if (displayRooms.innerHTML !== '') {
+  //             displayRooms.innerHTML = "";
+  //           }
+
+  //         totalPrice = 0
           
+  //         const price = roomPrice * this.value
+  //         for (key in rooms) {
+  //           if(rooms[key].num === '0') {
+  //             delete rooms[key]
+  //             console.log('deleted')
+  //           }
 
-          //CASE: Deleted the old content
-            if (displayRooms.innerText !== '') {
-              displayRooms.innerHTML = "";
-            }
-            
-          for (key in room) {
-            if(room[key].num === '0') {
-              delete room[key]
-              console.log('deleted')
-            }
-            
-            //for display
-            //assign new value
-            const newPara = document.createElement('span')
-            newPara.classList = "text-xs"
-            //Outputs the newest data
-            newPara.innerText = `${room[key].num}x ${key}`
-            displayRooms.appendChild(newPara)
-          }
-          //Compute first and update the total
-          computeRoomPrice(roomPrice, this.value)
-          priceElem.innerText = parseFloat(totalPrice)
-          priceElemMobile.innerText = parseFloat(totalPrice)
-          console.log(room)
-      })
+  //           //decrease the computed price
+  //           if (!(roomName in rooms)) {
+  //             totalPrice -= price
+  //           } else {
+  //             //for display
+  //             //assign new value
+  //             const newPara = document.createElement('input')
+  //             newPara.readOnly = true
+  //             newPara.name = `room-${key.replaceAll(' ','')}`
+  //             newPara.classList = "text-xs outline-0"
+  //             //Outputs the newest data
+  //             newPara.value = `${rooms[key].num}x ${key}`
+  //             displayRooms.appendChild(newPara)
+  //             console.log('added')
 
-      count += 1
-  })
+  //             const roomPrice =  rooms[key].price * rooms[key].num
+  //             totalPrice += roomPrice
+  //           }
+            
+  //         }
+  //         //Compute first and update the total
+
+    
+  //         priceElem.value = parseFloat(totalPrice)
+  //         priceElemMobile.innerText = parseFloat(totalPrice)
+  //         console.log(rooms)
+          
+  //     })
+
+  //     count += 1 //adds for next index
+  // })
   
   
 

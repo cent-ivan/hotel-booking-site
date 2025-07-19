@@ -95,6 +95,7 @@
  <!-- rooms, about, reviews, contact, and footer sections -->
       <!-- Rooms summary -->
       <section id="rooms" class="py-16 bg-gray-100">
+        
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Luxurious Accommodations</h2>
@@ -104,77 +105,35 @@
               each offering unique amenities to make your stay exceptional.
             </p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {%for room in room_types%} 
             <div class="bg-white !rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
               <div class="h-60 overflow-hidden">
                 <img src="../../../static/images/tropical-island.jpg" alt="Deluxe Room" class="w-full h-full object-cover object-top"/>
               </div>
               <div class="p-6">
                 <div class="flex justify-between items-center mb-2">
-                  <h3 class="text-xl font-bold">Deluxe Room</h3>
-                  <span class="text-primary font-bold">Php 2000/night</span>
+                  <h3 class="text-xl font-bold">{{room['room'].name}}</h3>
+                  <span class="text-primary font-bold">Php {{room['room'].price}}/night</span>
                 </div>
-                <p class="text-gray-600 mb-4"> Spacious room with king-size bed, private balcony, and stunning views of the surrounding landscape.</p>
+                <p class="text-gray-600 mb-4">{{room['room'].description}}</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">King Bed</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Ocean View</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Free WiFi</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">42m²</span>
-                </div>
-                <a href="{{url_for('rooms.index', type='Deluxe') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    View Rooms
-                </a>
-                
-              </div>
-            </div>
-
-            <div class="bg-white !rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-              <div class="h-60 overflow-hidden">
-                <img src="../../../static/images/tropical-island.jpg" alt="Executive Suite" class="w-full h-full object-cover object-top"/>
-              </div>
-              <div class="p-6">
-                <div class="flex justify-between items-center mb-2">
-                  <h3 class="text-xl font-bold">Executive Suite</h3>
-                  <span class="text-primary font-bold">Php 4000/night</span>
-                </div>
-                <p class="text-gray-600 mb-4">Luxurious suite featuring a separate living area, premiumamenities, and personalized service and also ... </p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded" >King Bed</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Living Room</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded" >Mini Bar</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">68m²</span>
+                  {%for amenity in room['room'].amenities%} 
+                      <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">{{amenity}}</span>
+                  {%endfor%}
                 </div>
                 <a href="{{url_for('rooms.index') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    View Rooms
+                    Reserve a room
                 </a>
                 
               </div>
             </div>
-
-            <div class="bg-white !rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-              <div class="h-60 overflow-hidden">
-                <img src="../../../static/images/tropical-island.jpg" alt="Presidential Suite" class="w-full h-full object-cover object-top"/>
-              </div>
-              <div class="p-6">
-                <div class="flex justify-between items-center mb-2">
-                  <h3 class="text-xl font-bold">Presidential Suite</h3>
-                  <span class="text-primary font-bold">Php 8000/night</span>
-                </div>
-                <p class="text-gray-600 mb-4">Our finest accommodation with panoramic views, private terrace, and exclusive access to premium facilities.</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">King Bed</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Jacuzzi</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">Private Butler</span>
-                  <span class="bg-emerald-100 text-primary text-xs px-2 py-1 !rounded">120m²</span>
-                </div>
-                <a href="{{url_for('rooms.index') }}" class="w-full bg-secondary hover:bg-primary text-white py-2 !rounded-button transition-colors whitespace-nowrap text-center block">
-                    View Rooms
-                </a>
-                
-              </div>
-            </div>
+     
+            {%endfor%}
           </div>
         </div>
+        
       </section>
 
       <!-- Information Section -->

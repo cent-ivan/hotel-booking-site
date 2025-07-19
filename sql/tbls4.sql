@@ -1,6 +1,9 @@
-CREATE TABLE roombookingtbl(
+CREATE TABLE reservationtbl(
     bookingID INT NOT NULL,
     roomID INT NOT NULL,
+    roomqty INT NOT NULL,
+    adults INT NOT NULL,
+    children INT,
     PRIMARY KEY (bookingID, roomID),
     CONSTRAINT fk_booking
         FOREIGN KEY (bookingID)

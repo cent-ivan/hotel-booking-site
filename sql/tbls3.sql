@@ -1,11 +1,10 @@
 CREATE TABLE bookingtbl( 
 		bookingID SERIAL PRIMARY KEY, 
+        public_uuid UUID NOT NULL, 
 		customerID INT NOT NULL,
         checkin DATE NOT NULL,
         checkout DATE NOT NULL,
-        adults INT NOT NULL,
-        children INT,
-        request VARCHAR(50) NOT NULL,
+        request VARCHAR(255) NOT NULL,
         promoID VARCHAR,
         totalprice DECIMAL(8,2) NOT NULL,
         createdon DATE NOT NULL,
