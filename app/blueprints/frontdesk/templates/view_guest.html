@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    
+    <!--ctailwind-->
+    <link rel="stylesheet" href="../../../static/css/style.css"> 
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#166534",
+            secondary: "#34d399",
+          },
+          borderRadius: {
+            button: "8px",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="text-gray-800 bg-gray-200">
+  
+  <div class="container-wrapper">
+    <span>Booking: UUID {{guest['public_uuid']}}</span>
+    <p>Customer:  {{guest['firstname']}} {{guest['lastname']}}</p>
+    <span>{{guest['room_type_price']}}</span>
+    
+  </div>
+
+
+</body>
+</html>

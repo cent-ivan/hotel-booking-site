@@ -7,5 +7,6 @@ all_blueprints = [
     (public_bp, '/'),
     (auth_bp, '/auth'),
     (room_bp, '/rooms'),
-    (front_bp, '/employee')
+    (front_bp, '/employee'),
+
 ]

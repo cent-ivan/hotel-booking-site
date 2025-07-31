@@ -107,9 +107,6 @@ def confirmation():
         'room_data': room_data #[(qty, roomtypeID, adult, children)]
     }
 
-    
-
-
     if request.method == 'POST': #UPLOADS booking details
         result = BookingService.reserve_roomnum(**data) #Ex. [{total_price:value, customer_data:form, room:[()]}]
         delete = BookingService.delete_client_uid(request.form.get('uid'))

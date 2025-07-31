@@ -13,6 +13,7 @@ class Booking(db.Model):
     request = Column(String, name='request')
     promoID = Column(String, ForeignKey('promotbl.promoid'), nullable=True, name='promoid')
     totalprice = Column(Numeric(8,2), nullable=False, name='totalprice')
+    status = Column(String, nullable=False, default='PENDING', name='status')
     createdon = Column(Date, nullable=False, default=datetime.now(timezone.utc), name='createdon')
 
     customers = orm.relationship('Customer', back_populates='bookings')
@@ -34,6 +35,7 @@ class Booking(db.Model):
             'request': self.request,
             'promoid': self.promoID,
             'totalprice': self.totalprice,
+            'status': self.status,
             'createdon': self.createdon,
         })
     
@@ -50,5 +52,6 @@ class Booking(db.Model):
         booking.request = data.get('request')
         booking.promoID = data.get('promoid')
         booking.totalprice = data.get('totalprice')
+        booking.status = data.get('status')
         booking.createdon = data.get('createdon')
         return booking

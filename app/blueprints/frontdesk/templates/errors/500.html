@@ -1,0 +1,22 @@
+{% extends 'error_base.html' %}
+
+{%block title%}403 - Forbidden{%endblock%}
+
+{% block content%}
+    <section class="h-screen flex flex-col items-center justify-center gap-4">
+        <div class="flex flex-col lg:flex-row justify-center gap-5">
+            <img class="h-20" src="../../../static/images/errors/computer.png" alt="error">
+            <div class="flex flex-col">
+                <h1 class="text-2xl font-bold mb-2">Internal Server Error</h1>
+                <div class="">
+                    <p class="text-sm">Something went wrong in our end. This might be due to a problem in our system or the database</p>
+                    <p class="font-bold">Try again in a few minutes. If problems persists, please contact support</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <a href="{{url_for('employee.index')}}" class="text-2xl underline">Back to Dashboard</a>
+    </section>
+
+{%endblock%}

@@ -13,3 +13,4 @@ wheels/
 #tailwind components
 node_modules/
 app/static/css/style.css
+sql/

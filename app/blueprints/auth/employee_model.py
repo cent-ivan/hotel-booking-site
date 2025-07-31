@@ -1,4 +1,4 @@
-from ....extensions import UserMixin, db, Column, Integer, String, Date
+from ...extensions import UserMixin, db, Column, Integer, String, Date
 from flask import json
 
 class Employee(db.Model, UserMixin):
@@ -8,12 +8,15 @@ class Employee(db.Model, UserMixin):
     firstname =  Column(String(50), nullable=False, name='firstname' )
     lastname =  Column(String(50), nullable=False, name='lastname' )
     gender = Column(String(20), nullable=False, name='gender')
-    contactnumber = Column(Integer, nullable=False, name='contactnumber')
+    contactnumber = Column(String(20), nullable=False, name='contactnumber')
     email = Column(String(50), nullable=False, name='email')
     address = Column(String(50), nullable=False, name='address')
     role = Column(String(20), nullable=False, name='role')
     password = Column(String(255), nullable=False, unique=True, name='password')
-    createdon = Column(Date, nullable=False, name='createdon ')
+    createdon = Column(Date, nullable=False, name='createdon')
+
+    def get_id(self):
+        return str(self.employeeID)
 
     #from Model to json
     def to_json(self):

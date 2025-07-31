@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leave - Hotel & Resort Login/Register</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../../static/css/style.css">
   <script>
     // tailwind custom configuration
@@ -88,6 +88,15 @@
 </head>
 
 <body class="h-screen flex items-center justify-center bg-gray-100 overflow-hidden">
+  <!-- message notif -->
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div id="message" onclick="changeOpacity()" class="flex items-center justify-center h-15 w-screen p-5 bg-blue-200 absolute z-70 left-0 top-0 opacity-95 cursor-pointer">
+        <p id="header" class="mr-1 font-bold">Notice:</p>
+          <p>{{ messages[0] }}</p>
+          </div>
+    {% endif %}
+  {% endwith %}
   <div class="container relative w-[700px] h-[550px] flex md:shadow-2xl shadow-none rounded-lg overflow-hidden">
     <div id="formWrapper" class="form-wrapper w-full h-full flex overflow-hidden">
 
@@ -95,7 +104,7 @@
       <div class="register-form bg-white flex items-center justify-center px-4 py-6 z-10 transition-transform overflow-y-auto">
         <div class="w-full max-w-xs">
           <h2 class="text-3xl font-bold text-center mb-4">Create Account</h2>
-          <form class="space-y-3" action="signin.html" method="POST">
+          <form class="space-y-3" action="" method="POST">
             <div>
               <label class="block text-sm font-medium text-gray-700">Username</label>
               <input type="text" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm" />
@@ -114,17 +123,7 @@
             </div>
             <button type="submit" class="w-full bg-secondary text-white py-2 rounded hover:bg-primary text-sm">Sign Up</button>
           </form>
-          <div class="my-3 flex items-center justify-center">
-            <span class="text-gray-500 text-sm">or</span>
-          </div>
-          <button class="w-full border border-gray-300 flex items-center justify-center py-2 rounded hover:bg-gray-400 text-sm">
-            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5 mr-2" />
-            Sign up with Google
-          </button>
-          <p class="mt-3 text-center text-sm text-gray-500">
-            Already have an account?
-            <button id="mobileShowLogin" class="font-semibold text-primary hover:text-secondary">Sign In</button>
-          </p>
+          
         </div>
       </div>
 
@@ -132,68 +131,37 @@
       <div class="login-form bg-white flex items-center justify-center px-4 py-6 z-20 transition-transform overflow-y-auto">
         <div class="w-full max-w-xs">
           <h2 class="text-3xl font-bold text-center mb-4">Sign In</h2>
-          <form class="space-y-3" action="ikaw na d2 pre landing_page.html" method="POST">
+          <form class="space-y-3" action="{{url_for('auth.login')}}" method="POST">
             <div>
-              <label id="loginLabel" class="block text-sm font-medium text-gray-700">Email address / Username</label>
-              <input id="loginInput" type="text" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm" placeholder="Enter Email or Username" />
+              <label id="loginLabel" class="block text-sm font-medium text-gray-700">Employee ID</label>
+              <input id="loginInput" name="id" type="text" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm" placeholder="Enter ID" />
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700">Password</label>
-              <input type="password" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm" />
+              <input name="password" type="password" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm" placeholder="Enter Password" />
             </div>
             <div id="forgotPassword" class="text-right">
               <a href="#" class="text-sm text-primary hover:underline">Forgot Password?</a>
             </div>
-            <!-- Role Selector -->
-            <div>
-              <label class="block text-sm font-medium text-gray-700">Role</label>
-              <select id="roleSelect" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm">
-                <option value="guest">Guest</option>
-                <option value="receptionist">Receptionist</option>
-              </select>
-            </div>
-            <!-- Sign In Button 
-            <button type="submit" class="w-full bg-secondary text-white py-2 rounded hover:bg-primary text-sm">Sign In</button> -->
-            <!-- Sign In Link delete after completing backend -->
-            <a href="../../../blueprints/public/templates/landing_page.html" class="w-full bg-secondary text-white py-2 rounded hover:bg-primary text-sm text-center block">Sign In</a>
-          </form>
-          <div id="googleSignIn" class="my-3 flex items-center justify-center">
-            <span class="text-gray-500 text-sm">or</span>
-          </div>
-          <div id="googleButton">
-            <button class="w-full border border-gray-300 flex items-center justify-center py-2 rounded hover:bg-gray-400 text-sm">
-              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5 mr-2" />
-              Sign in with Google
+            
+            <button type="submit" class="w-full bg-secondary text-white py-2 rounded hover:bg-primary text-sm text-center block">
+              Log In
             </button>
-          </div>
-          <p id="createAccountText" class="mt-3 text-center text-sm text-gray-500">
-            Don't have an account?
-            <button id="mobileShowRegister" class="font-semibold text-primary hover:text-secondary">Create Account</button>
-          </p>
+          </form>
         </div>
       </div>
     </div>
 
     <!-- Sliding Panel (Desktop only) -->
     <div id="slider" class="absolute top-0 left-0 w-1/2 h-full bg-secondary flex items-center justify-center transition-transform z-30">
-      <h1 class="text-3xl font-bold text-white text-center">Welcome to the Login Page</h1>
+        <div class="flex flex-col">
+            <h2 class="text-2xl lg:text-4xl font-['Pacifico'] text-black">Hotellina</h2>
+            <h1 class="text-3xl font-bold text-white text-center">Employee Login</h1>
+        </div>
     </div>
   </div>
 <script>
-  //hide content on load
-  const showRegister = document.getElementById('mobileShowRegister');
-  const showLogin = document.getElementById('mobileShowLogin');
-  const wrapper = document.getElementById('formWrapper');
   const slider = document.getElementById('slider');
-
-  const role = document.getElementById('roleSelect');
-  const createText = document.getElementById('createAccountText');
-  const forgot = document.getElementById('forgotPassword');
-  const googleBtn = document.getElementById('googleButton');
-  const googleText = document.getElementById('googleSignIn');
-
-  const loginLabel = document.getElementById('loginLabel');
-  const loginInput = document.getElementById('loginInput');
 
   showRegister.onclick = () =>
     window.innerWidth <= 768 ? wrapper.classList.add('show-register') : slider.style.transform = 'translateX(100%)';
@@ -201,15 +169,11 @@
   showLogin.onclick = () =>
     window.innerWidth <= 768 ? wrapper.classList.remove('show-register') : slider.style.transform = 'translateX(0)';
 
-  role.onchange = () => {
-    const isReceptionist = role.value === 'receptionist';
-    loginLabel.textContent = isReceptionist ? 'Username' : 'Email address / Username';
-    loginInput.placeholder = isReceptionist ? 'Enter Username' : 'Enter Email or Username';
-    createText.style.display = isReceptionist ? 'none' : 'block';
-    forgot.style.display = isReceptionist ? 'none' : 'block';
-    googleBtn.style.display = isReceptionist ? 'none' : 'block';
-    googleText.style.display = isReceptionist ? 'none' : 'flex';
-  };
+    //Notification dismiss--------
+    function changeOpacity() {
+      //set attribute
+      document.getElementById('message').setAttribute("class", "hidden"); 
+    }    
 </script>
 </body>
 </html>
