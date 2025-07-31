@@ -67,3 +67,5 @@ VALUES (
     ARRAY['Free WiFi', 'Air Conditioning', 'Flat Screen TV', 'Private Bathroom'],
     'https://yourcdn.com/images/standard-room.jpg'
 );
+
+INSERT INTO roomstbl(room_typeID, roomnumber) VALUES (1, 401), (1, 402), (2, 301), (3, 201), (4, 101);

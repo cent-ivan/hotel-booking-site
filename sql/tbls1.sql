@@ -1,24 +1,24 @@
 CREATE TABLE customertbl (
     customerID SERIAL PRIMARY KEY,
     public_uuid UUID UNIQUE NOT NULL,
-    firstname VARCHAR(20) NOT NULL,
-    lastname VARCHAR(20) NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
     gender VARCHAR(8) NOT NULL,
-    contactnumber VARCHAR(20) NOT NULL,
-    email VARCHAR(20) NOT NULL,
-    address VARCHAR(20) NOT NULL,
+    contactnumber VARCHAR(30) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     country VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE employeetbl(
     -- Custom ID--
     employeeID VARCHAR PRIMARY KEY,
-    firstname VARCHAR(20) NOT NULL,
-    lastname VARCHAR(20) NOT NULL,
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
     gender VARCHAR(8) NOT NULL,
-    contactnumber INT NOT NULL ,
-    email VARCHAR(20) NOT NULL,
-    address VARCHAR(20) NOT NULL ,
+    contactnumber VARCHAR(50) NOT NULL ,
+    email VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL ,
     role VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     createdon DATE NOT NULL

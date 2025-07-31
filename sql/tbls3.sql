@@ -7,6 +7,7 @@ CREATE TABLE bookingtbl(
         request VARCHAR(255) NOT NULL,
         promoID VARCHAR,
         totalprice DECIMAL(8,2) NOT NULL,
+        status VARCHAR(255) NOT NULL DEFAULT 'PENDING',
         createdon DATE NOT NULL,
 		Constraint fk_customer
             FOREIGN KEY(customerID)
