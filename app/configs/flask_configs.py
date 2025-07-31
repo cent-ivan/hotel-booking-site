@@ -35,11 +35,12 @@ class DevelopmentConfig(Config):
     SESSION_REDIS = Redis(**RedisConfig.to_dict())
 
 class ProductionConfig:
+    TESTING=False
     SECRET_KEY = os.getenv('SECRET_KEY')
     PERMANENT_SESSION_TIME = timedelta(days=3)
 
     #--database configuraion--
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DOCKER_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #--session----

@@ -2,11 +2,11 @@ from flask import Flask
 
 
 def create_app():
-    from .configs.flask_configs import DevelopmentConfig
+    from .configs.flask_configs import DevelopmentConfig, ProductionConfig
     from .configs.login_manager_config import LoginManagerConfig
 
     app = Flask(__name__, template_folder='blueprints/templates')
-    app.config.from_object(DevelopmentConfig())
+    app.config.from_object(ProductionConfig())
 
 
     from .blueprints.models import all_models
