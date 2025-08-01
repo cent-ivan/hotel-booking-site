@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Screen</title>
+    <link rel="stylesheet" href="../../../static/css/style.css">
+</head>
+<body>
+    <div id="modal" class="fixed flex items-center justify-center w-screen h-screen p-3 bg-gray-700/50 z-50">
+        <div class="w-full md:w-150 flex flex-col px-3 py-4 bg-white rounded-lg">
+            <div class="flex items-center justify-between mb-2">
+                <h2 class="text-2xl font-bold">Update Employee Details</h2>
+                <a href="{{url_for('employee.employees_page')}}" class="p-1 rounded-lg bg-gray-200 hover:bg-gray-300" title="Close">
+                    Back
+                </a>
+            </div>
+            <form action="{{url_for('employee.update_employee', uid=employee.employeeID)}}" method="post" class="flex flex-col gap-4">
+                <input name="employee-id" type="text" value="{{employee.employeeID}}" placeholder="Employee ID" class="w-40 lg:w-100 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <div class="flex flex-wrap gap-2">
+                    <input name="employee-firstname" value="{{employee.firstname}}" id="" type="text" required placeholder="First Name" class="w-55 lg:w-65 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input name="employee-lastname" value="{{employee.lastname}}" type="text" required placeholder="Last Name" class="w-55 lg:w-65 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input name="employee-contact" value="{{employee.contactnumber}}" type='text' maxlength="11" required placeholder="Employee Contact" class="w-45 lg:w-65 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input name="employee-email" value="{{employee.email}}" type="email" required placeholder="Employee Email" class="w-65 lg:w-65 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input name="employee-address" value="{{employee.address}}"  type="text" required placeholder="Address" class="w-80 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    {%if employee.gender == 'MALE'%}
+                        <select name="employee-gender" id="employee-gender" required class="w-40 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="" disabled selected hidden>Enter Gender</option>
+                            <option selected value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                        </select>
+                    {%else%}
+                        <select name="employee-gender" id="employee-gender" required class="w-40 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="" disabled selected hidden>Enter Gender</option>
+                            <option value="MALE">Male</option>
+                            <option selected value="FEMALE">Female</option>
+                        </select>
+                    {%endif%}
+
+                    {%if employee.role == 'FRONTDESK'%}
+                        <select name="employee-role" id="employee-gender" required class="w-40 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="" disabled selected hidden>Enter Role</option>
+                            <option selected value="FRONTDESK">Front Desk</option>
+                            <option value="MANAGER">Manager</option>
+                        </select>
+                    {%else%}
+                        <select name="employee-role" id="employee-gender" required class="w-40 px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="" disabled selected hidden>Enter Role</option>
+                            <option value="FRONTDESK">Front Desk</option>
+                            <option selected value="MANAGER">Manager</option>
+                        </select>
+                    {%endif%}
+                
+                    <div class="w-full px-3 mt-2">
+                        <input name="employee-password" type="password" placeholder="Password" class="w-full px-2 lg:pr-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    
+                    <div class="flex justify-center w-full mt-5">
+                        <button type="submit" class="bg-secondary hover:bg-primary text-white px-3 lg:px-5 py-2 rounded text-sm font-medium transition-colors whitespace-nowrap">
+                            Update Employee
+                        </button>
+                    </div>
+                
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

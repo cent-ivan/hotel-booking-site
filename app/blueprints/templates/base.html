@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{%block title%}Hotellina - Hotel & Resort{%endblock%}</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" /> 
+    <!-- RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Flatpickr CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!--ctailwind-->
+    <link rel="stylesheet" href="../../../static/css/style.css"> 
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    .home-hero-background {
+      background-image: url('../../../static/images/tropical-island.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 100%;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(21, 192, 49, 0.034);
+      z-index: 1;
+    }
+
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#166534",
+            secondary: "#34d399",
+          },
+          borderRadius: {
+            button: "8px",
+          },
+        },
+      },
+    };
+  </script>
+</head>
+
+<body class="text-gray-800 bg-gray-200">
+  
+  <div class="container-wrapper">
+    
+
+   {%block content%}{%endblock%}
+
+    <!-- Footer -->
+    <footer class="bg-emerald-900 text-white pt-10 pb-5 min-h-[100px] relative z-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-4">
+            <div>
+                <h3 class="text-xl font-['Pacifico'] mb-4">Hotellina</h3>
+                <p class="text-gray-400 mb-4">
+                    Experience luxury and comfort in our exclusive resort, where every detail is designed for your perfect getaway.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                    <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                    <i class="ri-instagram-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                    <i class="ri-twitter-x-line"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                    <i class="ri-pinterest-line"></i>
+                    </a>
+                </div>
+                </div>
+        
+                <div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#rooms" class="text-gray-400 hover:text-white transition-colors">Rooms</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                    <!-- <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">My Bookings</a></li>
+                    <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Reviews</a></li> -->
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                </ul>
+                </div>
+        
+                <div>
+                <h4 class="text-lg font-semibold mb-4">Policies</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Terms & Conditions</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Cancellation Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
+                </ul>
+                </div>
+        
+                <!-- <div>
+                <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
+                <p class="text-gray-400 mb-4">Subscribe to receive special offers and updates.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Your email address" class="flex-1 bg-gray-800 border-none rounded-l text-white p-1 focus:outline-none focus:ring-1 focus:ring-primary" />
+                    <button type="submit" class="bg-primary px-1 rounded-r hover:bg-emerald-800 transition-colors whitespace-nowrap">Subscribe</button>
+                </form>
+                </div> -->
+        </div>
+        <div class="pt-5 border-t border-gray-800 flex flex-col md:flex-row items-center justify-center">
+          <p class="text-gray-400 mb-4 md:mb-0 text-center">© 2025 Hotellina. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../../../static/scripts/home.js"></script>
+  <script src="../../../static/scripts/checkout.js"></script>
+  <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+
+            
+            //checkInInput.value = today() 
+            //checkOutInput.value = nextDate()
+
+            countNights(checkInInput.value, checkOutInput.value)
+
+            // Book Now button behavior
+            bookNowButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const roomCard = button.closest('.bg-white');
+                    const title = roomCard.querySelector('h2').innerText;
+                    const price = Array.from(roomCard.querySelectorAll('span')).find(span => span.innerText.includes('Php'))?.innerText || '';
+                    const imageSrc = roomCard.querySelector('img').getAttribute('src');
+                    updateSelectedRoom(title, price, imageSrc);
+                    if (roomDropdown) roomDropdown.value = '';
+                    roomPreviewContainer.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            // Dropdown room selection behavior
+            if (roomDropdown) {
+                roomDropdown.addEventListener('change', () => {
+                    if (roomDropdown.value !== '') {
+                        const data = JSON.parse(roomDropdown.value);
+                        updateSelectedRoom(data.title, data.price, data.img);
+                    } else {
+                        roomPreviewContainer.innerHTML = '';
+                    }
+                });
+            }
+        });
+
+
+        // Confirmation modal logic
+        const bookingForm = document.getElementById('bookingForm');
+        const modal = document.getElementById('confirmationModal');
+        const confirmBtn = document.getElementById('confirmModal');
+        const cancelBtn = document.getElementById('cancelModal');
+
+        bookingForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent actual submit
+            modal.classList.remove('hidden'); // Show modal
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            modal.classList.add('hidden'); // Hide modal
+            bookingForm.submit(); // Proceed with submission
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.add('hidden'); // Just close the modal
+        });
+    </script>
+
+</body>
+</html>

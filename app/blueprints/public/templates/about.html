@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block title%}Hotellina - Hotel & Resort {%endblock%}
+
+{%block content%}
+<!-- Navbar -->
+        <nav id="navbar" class="fixed top-0 left-0 w-full bg-emerald-700 z-50 transition-colors duration-300">
+            <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+                <a href="#" class="text-2xl font-['Pacifico'] text-white">Hotellina</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{{url_for('public.index') }}" class="text-white hover:text-gray-300 transition-colors">Home</a>
+                    <a href="{{url_for('rooms.index') }}" class="text-white hover:text-gray-300 transition-colors">Rooms</a>
+                    <a href="#about" class="text-white underline hover:text-gray-300 transition-colors" class="text-white hover:text-gray-300 transition-colors">About</a>
+                    <a href="{{url_for('public.contact') }}" class="text-white hover:text-gray-300 transition-colors">Contact</a>
+                </div>
+            </div>
+        </nav>
+
+<!--Main Content-->
+        <div class="container mx-auto px-4 py-32">Hello</div>
+
+{%endblock%}

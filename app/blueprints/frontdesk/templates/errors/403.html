@@ -1,0 +1,21 @@
+{% extends 'error_base.html' %}
+
+{%block title%}403 - Forbidden{%endblock%}
+
+{% block content%}
+    <section class="h-screen flex flex-col items-center justify-center gap-4">
+        <div class="flex flex-col lg:flex-row justify-center gap-5">
+            <img class="h-20" src="../../../static/images/errors/nothing.png" alt="error">
+            <div class="flex flex-col">
+                <h1 class="text-2xl font-bold mb-2">Forbidden Access</h1>
+                <div class="">
+                    <p class="font-bold">You have no authorization to enter this page.</p>
+                </div>
+                
+            </div>
+        </div>
+
+        <a href="{{url_for('auth.login')}}" class="text-2xl underline">Back to Login</a>
+    </section>
+
+{%endblock%}

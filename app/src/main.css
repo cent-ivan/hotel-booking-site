@@ -1,5 +1,12 @@
 @import "tailwindcss";
+ html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
 
+        body {
+            font-family: sans-serif;
+        }
 /* Custom Colors */
 .bg-primary {
     background-color: #166534 !important;
@@ -33,4 +40,15 @@
 }
 .modal-overlay {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Smooth blinking */
+@keyframes smooth-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+        
+.smooth-blink {
+            animation: smooth-blink 1.5s ease-in-out infinite;
 }
