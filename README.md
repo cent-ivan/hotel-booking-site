@@ -1,8 +1,10 @@
 
 # <center> Hotel Reservation System</center>
-  <center> <img alt="Static Badge" src="https://img.shields.io/badge/Contributors-2-green?style=flat-square"> <img alt="Static Badge" src="https://img.shields.io/badge/Python%20Flask-FFFF00?style=flat-square">
+  <center><img alt="Static Badge" src="https://img.shields.io/badge/Docker-1D63ED?style=flat-square"> <img alt="Static Badge" src="https://img.shields.io/badge/Contributors-2-green?style=flat-square"> <img alt="Static Badge" src="https://img.shields.io/badge/Python%20Flask-FFFF00?style=flat-square">
  <img alt="Static Badge" src="https://img.shields.io/badge/PostgreSQL-008bb9?style=flat-square"> .
 </center>
+
+<img alt="Cover" src="/app/static/images/screenshots/homepage.jpg">
  
 ## Table of Contents
 - [Overview](#overview)
@@ -33,6 +35,8 @@ This section lists major frameworks/libraries used.
 <img alt="Static Badge" src="https://img.shields.io/badge/Redis-cc7979?style=for-the-badge&logo=redis&logoSize=auto&logoColor=white">
 
 <img alt="Static Badge" src="https://img.shields.io/badge/TailwindCSS-a5f3fc?style=for-the-badge&logo=tailwindcss&logoSize=auto&logoColor=white">
+
+<img alt="Static Badge" src="https://img.shields.io/badge/SQLAlchemy-white?style=for-the-badge&logo=docker&logoSize=auto">
 
 ## Features
 ### :notebook_with_decorative_cover:  List of features

@@ -72,6 +72,7 @@ def add_employee():
     flash('Make sure the forms are not empty')
     return redirect(url_for('employee.employees_page'))
 
+#Confirmation screen serve as ajunction page for the endpoints
 @front_bp.route('/confirm-deletion/<string:uid>')
 @login_required
 def confirm_deletion(uid):
@@ -158,16 +159,59 @@ def update_employee(uid):
         return redirect(url_for('employee.update_page'))
 
     
+#sample,
+@front_bp.route('/sample-signup/', methods=['GET', 'POST'])
+def sample_signup():
+    if request.method == 'GET':
+        return render_template('employee/add_sample.html')
+    else:
+        id = request.form.get('employee-id')
+        firstname = request.form.get('employee-firstname')
+        lastname = request.form.get('employee-lastname')
+        contact = request.form.get('employee-contact')
+        email = request.form.get('employee-email')
+        address = request.form.get('employee-address')
+        gender = request.form.get('employee-gender')
+        role = request.form.get('employee-role')
+        password = request.form.get('employee-password')
+
+        if not FrontDeskValidators.is_number(contact):
+            flash('Make sure the contact form is a number')
+            return redirect(url_for('employee.employees_page'))
+
+        if not Validators.is_empty(id) and not Validators.is_empty(firstname) and not Validators.is_empty(lastname) and not Validators.is_empty(contact) and not Validators.is_empty(email) and not Validators.is_empty(address) and not Validators.is_empty(gender) and not Validators.is_empty(role) and not Validators.is_empty(password):
+            status = DashboardService.add_employee(
+                employeeID=id,
+                firstname = firstname,
+                lastname=lastname,
+                contactnumber=contact,
+                email=email,
+                address=address,
+                gender=gender,
+                role=role,
+                password=password,
+            )
+            if status == 200:
+                return redirect(url_for('auth.login'))
+            else:
+                flash('Error 500: Try again or check your connection')
+                return redirect(url_for('auth.login'))
+        flash('Make sure the forms are not empty')
+        return redirect(url_for('auth.login'))
 
 @front_bp.errorhandler(403)
 def forbidden(e):
     return render_template('errors/403.html'),403
 
+@front_bp.errorhandler(404)
+def not_found(e):
+    return render_template('errors/404.html'),404
+
 @front_bp.errorhandler(500)
 def internal_error(e):
-    return render_template('errors/500.html'),500
-#--FILTERS---
+    return render_template('errors/500.html', error=e),500
 
+#--FILTERS---
 @front_bp.app_template_filter('get_initial')
 def get_initial(name:str):
     return name[0].upper()

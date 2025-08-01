@@ -69,3 +69,17 @@ VALUES (
 );
 
 INSERT INTO roomstbl(room_typeID, roomnumber) VALUES (1, 401), (1, 402), (2, 301), (3, 201), (4, 101);
+
+INSERT INTO employeetbl(employeeID, firstname, lastname, gender, contactnumber, email, address, role, password, createdon) VALUES (
+    'HTL-001',
+    'Jack',
+    'Fruit',
+    'MALE',
+    '095001923100',
+    'jack12@gmail.com',
+    'Aston, Aklan',
+    'MANAGER',
+    '$2b$12$xsIL2t8T24nbYV29RCSeOOiME.Tc4theQijFoNxhhGg2CTkzZvr6e',
+    CURRENT_DATE
+);
+

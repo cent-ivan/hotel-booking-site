@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 class RedisConfig:
-    host = os.getenv('REDIS_HOST','localhost')
+    host = os.getenv('REDIS_DOCKER_HOST','localhost') #change to REDIS_HOST for local config, REDIS_DOCKER_HOST for docker
     port = os.getenv('REDIS_PORT', 6379)
     db = os.getenv('REDIS_DB', 0)
     
@@ -40,7 +40,7 @@ class ProductionConfig:
     PERMANENT_SESSION_TIME = timedelta(days=3)
 
     #--database configuraion--
-    SQLALCHEMY_DATABASE_URI = os.getenv('DOCKER_DATABASE_URI')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DOCKER_DATABASE_URI') #change to DATABASE_URI for local development, DOCKER_DATABASE_URI for docker
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     #--session----
@@ -50,7 +50,7 @@ class ProductionConfig:
 
 class PyscopgConfig:
     def __init__(self) -> None:
-        self.HOST = os.getenv('HOST')
+        self.HOST = os.getenv('DOCKER_HOST') #change to HOST for local development, DOCKER_HOST for docker
         self.USER = os.getenv('DB_USER')
         self.PASSWORD = os.getenv('PASSWORD')
         self.PORT = os.getenv('PORT')

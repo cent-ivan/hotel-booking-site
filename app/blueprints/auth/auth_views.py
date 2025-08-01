@@ -20,8 +20,7 @@ def login():
         
         login_user(user)
         return redirect(url_for('employee.index'))
-    
-     
+ 
 @auth_bp.route('/logout/')
 def logout():
     logout_user()

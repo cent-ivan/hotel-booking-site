@@ -1,11 +1,11 @@
 {% extends 'error_base.html' %}
 
-{%block title%}403 - Forbidden{%endblock%}
+{%block title%}500 - Internal Server Error{%endblock%}
 
 {% block content%}
-    <section class="h-screen flex flex-col items-center justify-center gap-4">
-        <div class="flex flex-col lg:flex-row justify-center gap-5">
-            <img class="h-20" src="../../../static/images/errors/computer.png" alt="error">
+    <section class="h-screen p-2 flex flex-col items-center justify-center gap-4">
+        <div class="p-4 flex flex-col lg:flex-row justify-center items-center gap-5">
+            <img class="w-20  h-20" src="../../../static/images/errors/computer.png" alt="error">
             <div class="flex flex-col">
                 <h1 class="text-2xl font-bold mb-2">Internal Server Error</h1>
                 <div class="">
@@ -18,5 +18,9 @@
 
         <a href="{{url_for('employee.index')}}" class="text-2xl underline">Back to Dashboard</a>
     </section>
+
+    <script>
+        
+    </script>
 
 {%endblock%}
