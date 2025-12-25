@@ -19,9 +19,9 @@
 
 ## Overview
 
- :clipboard: This project is a collaboration side project. Made as a hotel reservation system prototype for booking guest reservations online, and built with a front desk management system. The system is designed for online bookings, track rooms, guest management, and employee management.
+ This project is a collaboration side project. Made as a hotel reservation system prototype for booking guest reservations online, and built with a front desk management system. The system is designed for online bookings, track rooms, guest management, and employee management.
 
-> ⚠️ **Note:** This project is still a work-in-progress and some features are incomplete due to contributor availability. Contributions are welcome.
+> **Note:** This project is still a work-in-progress and some features are incomplete due to contributor availability. Contributions are welcome.
  ### Built With
 
 This section lists major frameworks/libraries used.
@@ -39,29 +39,29 @@ This section lists major frameworks/libraries used.
 <img alt="Static Badge" src="https://img.shields.io/badge/SQLAlchemy-white?style=for-the-badge&logo=docker&logoSize=auto">
 
 ## Features
-### :notebook_with_decorative_cover:  List of features
+### List of features
 - Assign date of check in and checkout
 - Automatic computation of prices
 - Track rooms
 - Manage guests and reservation (Front desk role)
 - Manage Employees (Admin role)
 - 
-> ### 🚧 In Progress / To-Do
+> ### In Progress / To-Do
 > - Filtering of rooms in check availability
 > - Design Confirmation Screen
 > - CRUD Operations for reservation list
 > - CRUD Operations for managing employees
 ## Requirements
 
--  #### :memo:  This app uses Python version 3.13 and above
--  #### :floppy_disk:  Install PostgreSQL 16.3, compiled by Visual C++ build 1939, 64-bit
--  #### :file_folder:  Get Package Manager: [uv](https://docs.astral.sh/uv/getting-started/installation/)
+-  #### This app uses Python version 3.13 and above
+-  #### Install PostgreSQL 16.3, compiled by Visual C++ build 1939, 64-bit
+-  #### Get Package Manager: [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 ## Installation
 
  :open_file_folder: This site uses python Flask. To avoid setting up backend enviroment, the site uses Docker Container it wraps the Python dependencies into an isolate container. Follow the instructions below:
  
--  ### :github: Install via git clone.
+-  ### Install via git clone.
 1.  **Fork** the project
 2. In your terminal, run the ``` git clone https://github.com/cent-ivan/hotel-booking-site.git```
 3. Download npm, and run the ``` npm install```, to generate your own node_modules directory
@@ -72,7 +72,7 @@ This section lists major frameworks/libraries used.
 
 ## Usage
 
--  ### :minidisc:   How to Develop with Python Flask (Containerized) with Tailwind (via Host)?
+-  ### How to Develop with Python Flask (Containerized) with Tailwind (via Host)?
 
 1. Run `docker compose up -d backend`
 2. Run this command,``` npm dev run```
@@ -80,7 +80,7 @@ This section lists major frameworks/libraries used.
 
 ## Contributing
 
- :handshake:  The developer welcome contributions from the community! To get started:
+The developer welcome contributions from the community! To get started:
 
 1.  **Create a new branch** for your feature or fix:
 
@@ -101,8 +101,8 @@ git  commit  -m  "short and meaningful message"
 
 ## Acknowledgements
 
--  :right_anger_bubble: Some of the Features are still in development. **This project is temporarily paused.**
+- Some of the Features are still in development. **This project is temporarily paused.**
 
 ## Developers
-- [Kane Stephene Frogosa](https://github.com/eScayne) **🎨:man_technologist:  Front-end / UI Designer**
-- [Vincent Ivan Palomata](https://github.com/cent-ivan) **⚒️:man_technologist:  Back-end**
+- [Kane Stephene Frogosa](https://github.com/eScayne) **Front-end / UI Designer**
+- [Vincent Ivan Palomata](https://github.com/cent-ivan) **Back-end**
