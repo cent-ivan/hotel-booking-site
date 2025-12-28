@@ -10,7 +10,10 @@ class LoginManagerConfig:
     def configure_login(login_manager): # type: ignore
         r = Redis(**RedisConfig.to_dict())
 
-        #login to use id
+        '''login to use id, THIS IS IMPORTANT FOR: 
+            @login_required,
+            current_user
+        '''
         @login_manager.user_loader # type: ignore
         def load_user(id):
             key = f'hotelreservation:employee:{id}'
